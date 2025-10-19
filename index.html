@@ -206,6 +206,21 @@
                 font-size: 20px;
             }
         }
+        .group-1 {
+    background-color: #e3f2fd; /* أزرق فاتح */
+}
+
+.group-2 {
+    background-color: #e8f5e9; /* أخضر فاتح */
+}
+
+.group-3 {
+    background-color: #fffde7; /* أصفر باهت */
+}
+
+.group-4 {
+    background-color: #ffe0b2; /* برتقالي فاتح */
+}
     </style>
 </head>
 <body>
@@ -245,22 +260,32 @@
         const form = document.getElementById("iqForm");
 
         for (let i = 1; i <= 25; i++) {
-            const div = document.createElement("div");
-            div.classList.add("question");
+    const div = document.createElement("div");
+    div.classList.add("question");
 
-            div.innerHTML = `
-                <label for="q${i}">السؤال ${i} (${marks[i]} درجات)</label>
-                <input type="checkbox" id="q${i}">
-            `;
+    // تحديد المجموعة وإضافة اللون المناسب
+    if (i >= 1 && i <= 6) {
+        div.classList.add("group-1");
+    } else if (i >= 7 && i <= 12) {
+        div.classList.add("group-2");
+    } else if (i >= 13 && i <= 19) {
+        div.classList.add("group-3");
+    } else if (i >= 20 && i <= 25) {
+        div.classList.add("group-4");
+    }
 
-            div.addEventListener("click", function () {
-                const checkbox = div.querySelector("input[type='checkbox']");
-                checkbox.checked = !checkbox.checked;
-            });
+    div.innerHTML = 
+        <label for="q${i}">السؤال ${i} (${marks[i]} درجات)</label>
+        <input type="checkbox" id="q${i}">
+    ;
 
-            form.appendChild(div);
+    div.addEventListener("click", function () {
+        const checkbox = div.querySelector("input[type='checkbox']");
+        checkbox.checked = !checkbox.checked;
+    });
+
+    form.appendChild(div);
         }
-
         function calculateResult() {
             let total = 0;
             for (let i = 1; i <= 25; i++) {
@@ -283,3 +308,4 @@
 
 </body>
 </html>
+
